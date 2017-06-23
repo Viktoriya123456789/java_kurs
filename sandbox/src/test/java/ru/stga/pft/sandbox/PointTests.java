@@ -10,6 +10,7 @@ import java.awt.*;
  */
 public class PointTests {
 
+
     @Test
     public void testDistance() {
         Point p1 = new Point (5, 5);
@@ -17,3 +18,4 @@ public class PointTests {
        assert Math.sqrt((((p1.x -p1.y)*(p1.x -p1.y))+((p2.x -p2.y)*(p2.x -p2.y)))) == 2;
     }
 }
+
