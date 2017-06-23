@@ -31,7 +31,7 @@ public class ContactCreationTests {
     }
 
     @Test
-    public void ContactCreationTests() {
+    public void testContactCreation() {
         wd.get("http://localhost:8080/addressbook/");
 
         initContactCreation();
