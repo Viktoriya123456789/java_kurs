@@ -13,9 +13,9 @@ public class PointTests {
 
     @Test
     public void testDistance() {
-        Point p1 = new Point (5, 5);
-        Point p2 = new Point(4, 2);
-       assert Math.sqrt((((p1.x -p1.y)*(p1.x -p1.y))+((p2.x -p2.y)*(p2.x -p2.y)))) == 2;
+        Point p1 = new Point (5, 2);
+        Point p2 = new Point(5, 4);
+       Assert.assertEquals(p1.distance(p2), 2.0);
     }
 }
 
