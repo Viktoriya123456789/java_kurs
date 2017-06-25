@@ -27,7 +27,9 @@ public class TestBase {
     @BeforeMethod
     public void setUp() throws Exception {
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+        wd.get("http://localhost:8080/addressbook/");
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+
         login("admin", "secret");
     }
 
