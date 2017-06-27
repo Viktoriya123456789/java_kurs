@@ -36,4 +36,13 @@ public class ContactHelper extends HelperBase{
 
         click(By.linkText("home page"));
     }
-}
+    public void initContactModification() {
+        click(By.name("submit"));
+    }
+
+    public void submitContactModification() {
+        click(By.name("update"));
+        }
+ }
+
+
