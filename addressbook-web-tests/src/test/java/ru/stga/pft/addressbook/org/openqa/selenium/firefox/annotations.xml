@@ -1,5 +1,0 @@
-<root>
-    <item name='org.openqa.selenium.firefox.FirefoxDriver'>
-        <annotation name='java.lang.Deprecated'/>
-    </item>
-</root>
