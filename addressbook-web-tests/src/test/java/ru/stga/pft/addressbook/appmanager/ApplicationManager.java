@@ -20,14 +20,7 @@ public class ApplicationManager {
     private GroupHelper groupHelper;
 
 
-    public static boolean isAlertPresent(FirefoxDriver wd) {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
+
 
     public void init() {
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));

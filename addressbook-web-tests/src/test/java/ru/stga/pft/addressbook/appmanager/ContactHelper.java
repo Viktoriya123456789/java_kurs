@@ -7,38 +7,33 @@ import ru.stga.pft.addressbook.model.ContactData;
 /**
  * Created by admin on 27.06.2017.
  */
-public class ContactHelper {
-    private FirefoxDriver wd;
+public class ContactHelper extends HelperBase{
 
     public ContactHelper(FirefoxDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void fillContactForm(ContactData contactData) {
-        wd.findElement(By.name("firstname")).click();
-        wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
-        wd.findElement(By.name("lastname")).click();
-        wd.findElement(By.name("lastname")).clear();
-        wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
-        wd.findElement(By.name("address")).click();
-        wd.findElement(By.name("address")).clear();
-        wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
-        wd.findElement(By.name("home")).click();
-        wd.findElement(By.name("home")).clear();
-        wd.findElement(By.name("home")).sendKeys(contactData.getTelephone());
-        wd.findElement(By.name("email")).click();
-        wd.findElement(By.name("email")).clear();
-        wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
-        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+        type(By.name("firstname"), contactData.getFirstname());
+        type(By.name("lastname"), contactData.getLastname());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("home"), contactData.getTelephone());
+        type(By.name("email"), contactData.getEmail());
+        click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void initContactCreation() {
+    protected void type(By locator, String text) {
+        click(locator);
+        wd.findElement(locator).clear();
+        wd.findElement(locator).sendKeys(text);
+    }
 
-        wd.findElement(By.linkText("add new")).click();
+    public void initContactCreation(By locator) {
+
+        click(locator);
     }
     public void returnToContactPage() {
 
-        wd.findElement(By.linkText("home page")).click();
+        click(By.linkText("home page"));
     }
 }
