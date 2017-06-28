@@ -13,9 +13,9 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() {
-        app.getContactHelper().returnToContactPage();
         app.getContactHelper().selectContact();
         app.getContactHelper().deleteSelectedContact();
+        app.getContactHelper().isAlertPresent();
         app.getContactHelper().returnToContactPage();
     }
 }

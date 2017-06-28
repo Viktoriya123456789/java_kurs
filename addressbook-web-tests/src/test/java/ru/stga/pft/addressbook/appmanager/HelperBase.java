@@ -24,12 +24,4 @@ public class HelperBase {
         wd.findElement(locator).sendKeys(text);
     }
 
-    public boolean isAlertPresent() {
-        try {
-            wd.switchTo().alert().accept();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
 }
