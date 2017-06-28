@@ -20,7 +20,7 @@ public class ContactHelper extends HelperBase{
         type(By.name("address"), contactData.getAddress());
         type(By.name("home"), contactData.getTelephone());
         type(By.name("email"), contactData.getEmail());
-        click(By.xpath("//div[@id='content']/form/input[21]"));
+        //click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
     protected void type(By locator, String text) {
@@ -56,7 +56,7 @@ public class ContactHelper extends HelperBase{
 
     public void submitContactCreation() {
 
-        click(By.name("submit"));
+        click(By.xpath("//div[@id='content']/form/input[21]"));
 
     }
 
