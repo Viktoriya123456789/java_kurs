@@ -40,7 +40,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void initContactModification() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[5]/td[8]/a/img"));
+        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
         //click(By.name("edit"));
     }
 
@@ -76,6 +76,9 @@ public class ContactHelper extends HelperBase{
     }
 
 
+    public void goToPage() {
+        click(By.linkText("home"));
 
+    }
 }
 
