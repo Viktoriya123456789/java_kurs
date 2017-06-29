@@ -38,7 +38,7 @@ public class ApplicationManager {
         } else if (browser == BrowserType.IE) {
             wd = new InternetExplorerDriver();
         }
-        wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+
         wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         wd.get("http://localhost:8080/addressbook/");
         groupHelper = new GroupHelper(wd);

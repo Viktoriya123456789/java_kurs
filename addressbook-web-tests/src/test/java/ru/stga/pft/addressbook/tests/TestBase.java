@@ -4,7 +4,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import ru.stga.pft.addressbook.appmanager.ApplicationManager;
-import sun.plugin2.util.BrowserType;
+import org.openqa.selenium.remote.BrowserType;
 
 /**
  * Created by admin on 23.06.2017.
