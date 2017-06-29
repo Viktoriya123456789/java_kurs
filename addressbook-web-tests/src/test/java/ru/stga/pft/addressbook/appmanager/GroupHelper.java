@@ -1,6 +1,7 @@
 package ru.stga.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stga.pft.addressbook.model.GroupData;
@@ -53,6 +54,31 @@ public class GroupHelper extends HelperBase{
      public void deleteSelectedGroups() {
         click(By.name("delete"));
      }
+     public void gotoGroupPage() {
+        click(By.linkText("groups"));
+    }
 
+    public void createGroup(GroupData group) {
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupCreation();
+        returnToGroupPage();
+    }
 
+    public boolean isThereAGroup() {
+return isElementPresent (By.name("selected[]"));
+    }
+
+    private boolean isElementPresent(By name) {
+        return false;
+    }
+
+    public boolean isAlertPresent() {
+        try {
+            wd.switchTo().alert().accept();
+            return true;
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
+    }
 }

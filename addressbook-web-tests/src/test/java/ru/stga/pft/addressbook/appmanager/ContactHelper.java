@@ -5,6 +5,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stga.pft.addressbook.model.ContactData;
+import ru.stga.pft.addressbook.model.GroupData;
 
 /**
  * Created by admin on 27.06.2017.
@@ -80,5 +81,22 @@ public class ContactHelper extends HelperBase{
         click(By.linkText("home"));
 
     }
+
+    public void createContact(ContactData contact) {
+        initContactCreation(By.linkText("add new"));
+        fillContactForm(contact);
+        submitContactCreation();
+        returnToContactPage();
+    }
+
+
+        private boolean isElementPresent(By name) {
+            return false;
+        }
+
+    public boolean isThereAContact() {
+        return isElementPresent (By.name("selected[]"));
+    }
 }
+
 
