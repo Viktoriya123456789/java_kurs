@@ -3,6 +3,7 @@ package ru.stga.pft.addressbook.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,12 +16,15 @@ public class GroupDeletionTests extends TestBase{
     public void testGroupDeletion() {
 
         app.getNavigationHelper().gotoGroupPage();
+        int before = app.getGroupHelper().getGroupCount();
         if (! app.getGroupHelper().isThereAGroup()){
             app.getGroupHelper().createGroup(new GroupData("Test group2", "test1", "test2"));
         }
         app.getGroupHelper().selectGroup();
         app.getGroupHelper().deleteSelectedGroups();
-        app.getGroupHelper().isAlertPresent();
+        //app.getGroupHelper().isAlertPresent();
         app.getGroupHelper().returnToGroupPage();
+        int after = app.getGroupHelper().getGroupCount ();
+        Assert.assertEquals(after, before - 1);
     }
 }
