@@ -81,4 +81,8 @@ return isElementPresent (By.name("selected[]"));
             return false;
         }
     }
+
+    public int getGroupCount() {
+       return wd.findElements(By.name("selected[]")).size();
+    }
 }
