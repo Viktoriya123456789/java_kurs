@@ -34,8 +34,8 @@ public class GroupHelper extends HelperBase{
         click(By.name("new"));
     }
 
-    public void selectGroup() {
-        click(By.name("selected[]"));
+    public void selectGroup(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void initGroupModification() {
@@ -69,9 +69,7 @@ public class GroupHelper extends HelperBase{
 return isElementPresent (By.name("selected[]"));
     }
 
-    private boolean isElementPresent(By name) {
-        return false;
-    }
+
 
     public boolean isAlertPresent() {
         try {
