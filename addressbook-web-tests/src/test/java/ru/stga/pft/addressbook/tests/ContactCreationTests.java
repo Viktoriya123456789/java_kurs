@@ -1,9 +1,12 @@
 package ru.stga.pft.addressbook.tests;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stga.pft.addressbook.model.ContactData;
+import ru.stga.pft.addressbook.model.GroupData;
 
+import java.util.List;
 
 
 public class ContactCreationTests extends TestBase {
@@ -12,13 +15,13 @@ public class ContactCreationTests extends TestBase {
     @Test
     public void testContactCreation() {
         app.getContactHelper().goToPage();
+        List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().createContact(new ContactData("Viktoriya", "Yanuzakova", "Kazakhstan", "7271111111", "test@test.ru"));
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size() + 1);
     }
-        //app.getContactHelper().initContactCreation(By.linkText("add new"));
-        //app.getContactHelper().fillContactForm(new ContactData("Viktoriya", "Yanuzakova", "Kazakhstan", "7271111111", "test@test.ru"));
-        //app.getContactHelper().submitContactCreation();
-        //app.getContactHelper().returnToContactPage();
 }
+
 
 
 
