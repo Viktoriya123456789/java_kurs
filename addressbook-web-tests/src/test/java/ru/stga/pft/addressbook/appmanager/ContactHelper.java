@@ -46,9 +46,7 @@ public class ContactHelper extends HelperBase{
         click(By.linkText("home"));
     }
 
-    protected boolean isElementPresent(By name) {
-        return false;
-    }
+
 
     public void initContactModification(int index) {
         wd.findElements(By.cssSelector("img[alt='Edit']")).get(index).click();
