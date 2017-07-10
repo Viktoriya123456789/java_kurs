@@ -4,15 +4,15 @@ public class ContactData {
     private final String firstname;
     private final String lastname;
     private final String address;
-    private final String telephone;
-    private final String email;
+    //private final String telephone;
+    //private final String email;
 
-    public ContactData(String firstname, String lastname, String address, String telephone, String email) {
+    public ContactData(String firstname, String lastname, String address){//, String telephone, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
-        this.telephone = telephone;
-        this.email = email;
+        //this.telephone = telephone;
+        //this.email = email;
     }
 
     public String getFirstname() {
@@ -27,11 +27,11 @@ public class ContactData {
         return address;
     }
 
-    public String getTelephone() {
-        return telephone;
-    }
+    //public String getTelephone() {
+        //return telephone;
+    //}
 
-    public String getEmail() {
-        return email;
-    }
+    //public String getEmail() {
+        //return email;
+    //}
 }

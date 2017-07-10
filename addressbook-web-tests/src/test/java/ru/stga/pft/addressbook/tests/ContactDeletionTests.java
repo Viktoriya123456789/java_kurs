@@ -19,7 +19,7 @@ public class ContactDeletionTests extends TestBase {
     public void testContactDeletion() {
         app.getContactHelper().goToPage();
         if (! app.getContactHelper().isThereAContact()){
-            app.getContactHelper().createContact(new ContactData("Viktoriya", "Yanuzakova", "Kazakhstan", "7271111111", "test@test.ru"));
+            app.getContactHelper().createContact(new ContactData("firstname", "lastname", "address"));
         }
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().selectContact(before.size() - 1);

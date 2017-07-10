@@ -27,8 +27,8 @@ public class ContactHelper extends HelperBase{
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("address"), contactData.getAddress());
-        type(By.name("home"), contactData.getTelephone());
-        type(By.name("email"), contactData.getEmail());
+        //type(By.name("home"), contactData.getTelephone());
+        //type(By.name("email"), contactData.getEmail());
     }
 
     protected void type(By locator, String text) {
@@ -44,6 +44,10 @@ public class ContactHelper extends HelperBase{
 
     public void returnToContactPage() {
         click(By.linkText("home"));
+    }
+
+    protected boolean isElementPresent(By name) {
+        return false;
     }
 
     public void initContactModification(int index) {
@@ -103,7 +107,7 @@ public class ContactHelper extends HelperBase{
         List<WebElement> elements = wd.findElements(By.cssSelector("td.center"));
         for (WebElement element : elements){
             String name = element.getText();
-            ContactData contact = new ContactData ("Viktoriya", "Yanuzakova", "Kazakhstan", "7271111111", "test@test.ru");
+            ContactData contact = new ContactData ("firstname", "lastname", "address");
             contacts.add (contact);
         }
         return contacts;
