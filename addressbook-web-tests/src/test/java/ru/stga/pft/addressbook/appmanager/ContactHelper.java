@@ -4,12 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stga.pft.addressbook.model.ContactData;
-import ru.stga.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -27,8 +24,6 @@ public class ContactHelper extends HelperBase{
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("address"), contactData.getAddress());
-        //type(By.name("home"), contactData.getTelephone());
-        //type(By.name("email"), contactData.getEmail());
     }
 
     protected void type(By locator, String text) {
@@ -53,8 +48,6 @@ public class ContactHelper extends HelperBase{
     }
 
     public void selectContact(int index) {
-        //click(By.name("selected[]"));
-        //wd.findElements(By.cssSelector("img[alt='Edit']")).get(index).click();
        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
@@ -101,12 +94,16 @@ public class ContactHelper extends HelperBase{
     }
 
     public List<ContactData> getContactList() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.cssSelector("td.center"));
-        for (WebElement element : elements){
-            String name = element.getText();
-            ContactData contact = new ContactData ("firstname", "lastname", "address");
-            contacts.add (contact);
+        List<ContactData> contacts = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements) {
+            List<WebElement> cells = element.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+            String lastname = cells.get(1).getText();
+            String firstname = cells.get(2).getText();
+            String address = cells.get(3).getText();
+            ContactData contact = new ContactData(id, firstname, lastname, address);
+            contacts.add(contact);
         }
         return contacts;
     }
