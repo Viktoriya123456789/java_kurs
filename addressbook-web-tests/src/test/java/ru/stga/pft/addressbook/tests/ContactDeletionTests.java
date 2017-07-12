@@ -1,36 +1,34 @@
 package ru.stga.pft.addressbook.tests;
 
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stga.pft.addressbook.model.ContactData;
-import ru.stga.pft.addressbook.model.GroupData;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class ContactDeletionTests extends TestBase {
 
+    @BeforeMethod
+    public void ensurePreconditions(){
+        app.goTo().goToPage();
+        if (app.contact().list().size() == 0){
+            app.contact().create(new ContactData().withFirstName("test").withLastName("test1").withAddress("test2"));
+        }
+    }
 
     @Test
     public void testContactDeletion() {
-        app.getContactHelper().goToPage();
-        if (! app.getContactHelper().isThereAContact()){
-            app.getContactHelper().createContact(new ContactData("test", "test1", "test2"));
-        }
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact(before.size() - 1);
-        app.getContactHelper().deleteSelectedContact();
-        app.getContactHelper().isAlertPresent();
-        app.getContactHelper().returnToContactPage();
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().list();
+        int index = before.size() - 1;
+        app.contact().delete(index);
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() - 1);
 
-        before.remove(before.size() - 1);
+        before.remove(index);
         Assert.assertEquals(before, after);
 
     }
+
+
 }
