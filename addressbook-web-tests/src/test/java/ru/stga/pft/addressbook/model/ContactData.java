@@ -28,7 +28,6 @@ public class ContactData {
 
     public ContactData withId(int id) {
         this.id = id;
-
         return this;
     }
 
