@@ -45,7 +45,7 @@ public class ContactHelper extends HelperBase{
 
 
 
-   public void initContactModification() {
+   public void initContactModification(int id) {
        wd.findElement(By.cssSelector("img[alt='Edit']")).click();
    }
 
@@ -88,7 +88,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void modify(ContactData contact) {
-        initContactModification();
+        initContactModification(contact.getId());
         fillContactForm(contact);
         updateContactModification();
         returnToContactPage();
