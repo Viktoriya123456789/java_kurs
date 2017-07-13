@@ -46,7 +46,7 @@ public class ContactHelper extends HelperBase{
 
 
    public void initContactModification(int id) {
-       wd.findElement(By.cssSelector("img[alt='Edit']")).click();
+       wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
    }
 
     public void selectContactById(int id) {
