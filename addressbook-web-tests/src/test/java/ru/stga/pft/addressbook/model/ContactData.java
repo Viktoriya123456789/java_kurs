@@ -33,7 +33,10 @@ public class ContactData {
 
     public String getMobilePhone() {return mobilePhone;}
 
-    //public String getAllPhones() {return allPhones;}
+    public String getAllPhones() {
+        return allPhones;
+    }
+
 
 
     public ContactData withId(int id) {
@@ -71,11 +74,10 @@ public class ContactData {
         return this;
     }
 
-    //public ContactData withAllPhones(String allPhones) {
-        //this.allPhones = allPhones;
-        //return this;
-    //}
-
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
 
 
     @Override

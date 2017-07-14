@@ -114,7 +114,7 @@ public class ContactHelper extends HelperBase{
 
     private Contacts contactCache = null;
 
-    public Set<ContactData> all() {
+    public Contacts all() {
         Set<ContactData> contacts = new HashSet<ContactData>();
         List<WebElement> rows = wd.findElements (By.name("entry"));
         for (WebElement row : rows) {
@@ -123,9 +123,9 @@ public class ContactHelper extends HelperBase{
             String lastname = cells.get(1).getText();
             String firstname = cells.get(2).getText();
             String address = cells.get(3).getText();
-            String[] phones = cells.get(5).getText().split("\n");
+            String allPhones = cells.get(5).getText();
             contacts.add (new ContactData().withId(id).withFirstName("test").withLastName("test1").withAddress("test2")
-                    .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+                    .withAllPhones(allPhones));
         }
         return contacts;
     }
