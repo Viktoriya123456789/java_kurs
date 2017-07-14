@@ -6,10 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stga.pft.addressbook.model.ContactData;
 import ru.stga.pft.addressbook.model.Contacts;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 /**
  * Created by admin on 27.06.2017.
@@ -26,6 +24,12 @@ public class ContactHelper extends HelperBase{
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("address"), contactData.getAddress());
+        type(By.name("homePhone"), contactData.getHomePhone());
+        type(By.name("workPhone"), contactData.getWorkPhone());
+        type(By.name("mobilePhone"), contactData.getMobilePhone());
+        type(By.name("email1"), contactData.getEmail1());
+        type(By.name("email2"), contactData.getEmail2());
+        type(By.name("email3"), contactData.getEmail3());
     }
 
     protected void type(By locator, String text) {
@@ -124,6 +128,7 @@ public class ContactHelper extends HelperBase{
         String home = wd.findElement(By.name("home")).getAttribute("value");
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
+
         String email1 = wd.findElement(By.name("email1")).getAttribute("value");
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
@@ -146,23 +151,29 @@ public class ContactHelper extends HelperBase{
             String lastname = cells.get(1).getText();
             String firstname = cells.get(2).getText();
             String address = cells.get(3).getText();
-            String allEmailes = cells.get(4).getText();
+            //String allEmailes = cells.get(4).getText();
             String allPhones = cells.get(5).getText();
+            String email1 = cells.get(4).getText();
+            String email2 = cells.get(4).getText();
+            String email3 = cells.get(4).getText();
+
 
 
             contactCache.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)
                     .withAllPhones(allPhones)
                     .withAddress(address)
-                    .withAllEmailes(allEmailes));
+                    .withEmail1(email1).withEmail2(email2).withEmail3(email3));
+                    //.withAllEmailes(allEmailes));
         }
         return new Contacts(contactCache);
     }
 
     private void initContactModificationById(int id) {
-        WebElement checkbox = wd.findElement (By.cssSelector(String.format("input[value='%s']", id)));
-        WebElement row = checkbox.findElement(By.xpath("./../.."));
-        List<WebElement> cells = row.findElements(By.tagName("td"));
-        cells.get(7).findElement(By.tagName("a")).click();
+        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+        //WebElement checkbox = wd.findElement (By.cssSelector(String.format("input[value='%s']", id)));
+        //WebElement row = checkbox.findElement(By.xpath("./../.."));
+        //List<WebElement> cells = row.findElements(By.tagName("td"));
+        //cells.get(7).findElement(By.tagName("a")).click();
     }
 }
 
