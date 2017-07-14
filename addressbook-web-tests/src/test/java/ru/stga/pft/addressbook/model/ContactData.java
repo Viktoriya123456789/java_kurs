@@ -9,6 +9,11 @@ public class ContactData {
     private String mobilePhone;
     private String workPhone;
     private String allPhones;
+    private String email1;
+    private String email2;
+    private String email3;
+    private String allEmailes;
+
 
 
     public int getId() {
@@ -33,9 +38,16 @@ public class ContactData {
 
     public String getMobilePhone() {return mobilePhone;}
 
-    public String getAllPhones() {
-        return allPhones;
-    }
+    public String getAllPhones() {return allPhones;}
+
+    public String getEmail1() {return email1;}
+
+    public String getEmail2() {return email2;}
+
+    public String getEmail3() {return email3;}
+
+    public String getAllEmailes() {return allEmailes;}
+
 
 
 
@@ -79,6 +91,27 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withEmail1(String email1) {
+        this.email1 = email1;
+        return this;
+    }
+
+
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
+
+    public ContactData withAllEmailes(String allEmailes) {
+        this.allEmailes = allEmailes;
+        return this;
+    }
 
     @Override
     public String toString() {
@@ -111,6 +144,4 @@ public class ContactData {
         if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
         return address != null ? address.equals(that.address) : that.address == null;
     }
-
-
 }
