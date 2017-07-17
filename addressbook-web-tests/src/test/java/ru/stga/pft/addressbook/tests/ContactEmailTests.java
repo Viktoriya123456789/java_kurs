@@ -30,8 +30,8 @@ public class ContactEmailTests extends TestBase {
                 .collect(Collectors.joining("\n"));
     }
 
-    public static String cleaned (String email){
-       return email.replaceAll("\\s", "").replaceAll ("-()","");
+   public static String cleaned (String email){
+      return email.replaceAll("\\s", "").replaceAll ("-()","");
     }
 
 
