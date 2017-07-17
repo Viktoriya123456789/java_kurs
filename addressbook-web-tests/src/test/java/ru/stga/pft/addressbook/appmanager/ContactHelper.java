@@ -130,7 +130,7 @@ public class ContactHelper extends HelperBase{
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
         //String emailes = wd.findElement(By.name("emailes")).getAttribute("value");
-        String email1 = wd.findElement(By.name("email1")).getAttribute("value");
+        String email1 = wd.findElement(By.name("email")).getAttribute("value");
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
         wd.navigate().back();
