@@ -119,13 +119,13 @@ public class ContactData {
                 "id=" + id +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", address='" + address + '\'' +
-                ", WorkPhone='" + workPhone + '\'' +
-                ", HomePhone='" + homePhone + '\'' +
-                ", MobilePhoneess='" + mobilePhone + '\'' +
-                ", Email1='" + email1 + '\'' +
-                ", Email2='" + email2 + '\'' +
-                ", Email3='" + email3 + '\'' +
+                //", address='" + address + '\'' +
+               // ", workPhone='" + workPhone + '\'' +
+                //", homePhone='" + homePhone + '\'' +
+               // ", mobilePhones='" + mobilePhone + '\'' +
+                //", email1='" + email1 + '\'' +
+                //", email2='" + email2 + '\'' +
+               // ", email3='" + email3 + '\'' +
                 '}';
     }
 
