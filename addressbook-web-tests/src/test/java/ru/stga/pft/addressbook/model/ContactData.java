@@ -120,6 +120,12 @@ public class ContactData {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", address='" + address + '\'' +
+                ", WorkPhone='" + workPhone + '\'' +
+                ", HomePhone='" + homePhone + '\'' +
+                ", MobilePhoneess='" + mobilePhone + '\'' +
+                ", Email1='" + email1 + '\'' +
+                ", Email2='" + email2 + '\'' +
+                ", Email3='" + email3 + '\'' +
                 '}';
     }
 
