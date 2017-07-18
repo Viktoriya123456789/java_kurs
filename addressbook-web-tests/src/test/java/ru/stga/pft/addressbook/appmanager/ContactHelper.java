@@ -20,18 +20,7 @@ public class ContactHelper extends HelperBase{
         super(wd);
     }
 
-    public void fillContactForm(ContactData contactData) {
-        type(By.name("firstname"), contactData.getFirstname());
-        type(By.name("lastname"), contactData.getLastname());
-        type(By.name("address"), contactData.getAddress());
-        type(By.name("homePhone"), contactData.getHomePhone());
-        type(By.name("workPhone"), contactData.getWorkPhone());
-        type(By.name("mobilePhone"), contactData.getMobilePhone());
-        type(By.name("email1"), contactData.getEmail1());
-        type(By.name("email2"), contactData.getEmail2());
-        type(By.name("email3"), contactData.getEmail3());
-        //type(By.name("allEmailes"), contactData.getAllEmailes());
-    }
+
 
     protected void type(By locator, String text) {
         click(locator);
@@ -85,6 +74,16 @@ public class ContactHelper extends HelperBase{
 
     }
 
+
+
+    public boolean isThereAContact() {
+        return isElementPresent (By.name("selected[]"));
+    }
+
+    public int count() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
+
     public void create(ContactData contact) {
         initContactCreation(By.linkText("add new"));
         fillContactForm(contact);
@@ -109,17 +108,20 @@ public class ContactHelper extends HelperBase{
         returnToContactPage();
     }
 
-    public boolean isThereAContact() {
-        return isElementPresent (By.name("selected[]"));
-    }
-
-    public int count() {
-        return wd.findElements(By.name("selected[]")).size();
-    }
-
     private Contacts contactCache = null;
 
-
+    public void fillContactForm(ContactData contactData) {
+        type(By.name("firstname"), contactData.getFirstname());
+        type(By.name("lastname"), contactData.getLastname());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("home"), contactData.getHomePhone());
+        type(By.name("work"), contactData.getWorkPhone());
+        type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("email"), contactData.getEmail1());
+        type(By.name("email2"), contactData.getEmail2());
+        type(By.name("email3"), contactData.getEmail3());
+        //type(By.name("allEmailes"), contactData.getAllEmailes());
+    }
 
     public ContactData infoFromEditForm(ContactData contact) {
         initContactModificationById(contact.getId());
@@ -129,7 +131,7 @@ public class ContactHelper extends HelperBase{
         String home = wd.findElement(By.name("home")).getAttribute("value");
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
-        //String emailes = wd.findElement(By.name("emailes")).getAttribute("value");
+       // String emailes = wd.findElement(By.name("emailes")).getAttribute("value");
         String email1 = wd.findElement(By.name("email")).getAttribute("value");
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
