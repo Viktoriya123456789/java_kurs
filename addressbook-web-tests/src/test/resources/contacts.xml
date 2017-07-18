@@ -1,0 +1,57 @@
+<list>
+  <contact>
+    <firstname>firstname 0</firstname>
+    <lastname>lastname 0</lastname>
+    <address>address 0</address>
+    <homePhone>home 0</homePhone>
+    <mobilePhone>mobile 0</mobilePhone>
+    <workPhone>work 0</workPhone>
+    <email1>email 0</email1>
+    <email2>email2 0</email2>
+    <email3>email3 0</email3>
+  </contact>
+  <contact>
+    <firstname>firstname 1</firstname>
+    <lastname>lastname 1</lastname>
+    <address>address 1</address>
+    <homePhone>home 1</homePhone>
+    <mobilePhone>mobile 1</mobilePhone>
+    <workPhone>work 1</workPhone>
+    <email1>email 1</email1>
+    <email2>email2 1</email2>
+    <email3>email3 1</email3>
+  </contact>
+  <contact>
+    <firstname>firstname 2</firstname>
+    <lastname>lastname 2</lastname>
+    <address>address 2</address>
+    <homePhone>home 2</homePhone>
+    <mobilePhone>mobile 2</mobilePhone>
+    <workPhone>work 2</workPhone>
+    <email1>email 2</email1>
+    <email2>email2 2</email2>
+    <email3>email3 2</email3>
+  </contact>
+  <contact>
+    <firstname>firstname 3</firstname>
+    <lastname>lastname 3</lastname>
+    <address>address 3</address>
+    <homePhone>home 3</homePhone>
+    <mobilePhone>mobile 3</mobilePhone>
+    <workPhone>work 3</workPhone>
+    <email1>email 3</email1>
+    <email2>email2 3</email2>
+    <email3>email3 3</email3>
+  </contact>
+  <contact>
+    <firstname>firstname 4</firstname>
+    <lastname>lastname 4</lastname>
+    <address>address 4</address>
+    <homePhone>home 4</homePhone>
+    <mobilePhone>mobile 4</mobilePhone>
+    <workPhone>work 4</workPhone>
+    <email1>email 4</email1>
+    <email2>email2 4</email2>
+    <email3>email3 4</email3>
+  </contact>
+</list>
