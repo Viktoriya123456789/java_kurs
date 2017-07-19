@@ -3,6 +3,7 @@ package ru.stga.pft.addressbook.tests;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stga.pft.addressbook.model.GroupData;
@@ -12,6 +13,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -19,6 +21,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class GroupCreationTests extends TestBase {
+
+    org.slf4j.Logger logger = LoggerFactory.getLogger(GroupCreationTests.class);
 
     @DataProvider
     public Iterator<Object[]> validGroupsFromXml() throws IOException {
@@ -64,7 +68,7 @@ public class GroupCreationTests extends TestBase {
         }
 
 
-    @Test
+    @Test (enabled = false)
     public void testBadGroupCreation() {
         app.goTo().groupPage();
         Groups before = app.group().all();
