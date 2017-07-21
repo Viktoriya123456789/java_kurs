@@ -18,9 +18,11 @@ public class ContactData {
     @Column(name = "id")
     @XStreamOmitField
     private int id = Integer.MAX_VALUE;
+
     @Expose
     @Column(name = "firstname")
     private String firstname;
+
     @Expose
     @Column(name = "lastname")
     private String lastname;
@@ -28,35 +30,42 @@ public class ContactData {
     @Expose
     @Column(name = "address")
     @Type(type = "text")
-
     private String address;
+
     @Expose
     @Column(name = "home")
     @Type(type = "text")
     private String homePhone;
+
     @Expose
     @Column(name = "mobile")
     @Type(type = "text")
     private String mobilePhone;
+
     @Expose
     @Column(name = "work")
     @Type(type = "text")
     private String workPhone;
+
     @Expose
     @Transient
     private String allPhones;
+
     @Expose
     @Column(name = "email")
     @Type(type = "text")
     private String email1;
+
     @Expose
     @Column(name = "email2")
     @Type(type = "text")
     private String email2;
+
     @Expose
     @Column(name = "email3")
     @Type(type = "text")
     private String email3;
+
     @Expose
     @Transient
     private String allEmailes;
