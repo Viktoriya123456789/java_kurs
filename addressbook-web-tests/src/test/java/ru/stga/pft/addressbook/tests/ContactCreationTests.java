@@ -76,6 +76,8 @@ public class ContactCreationTests extends TestBase {
         assertThat(app.group().count(), equalTo(before.size()));
         Contacts after = app.contact().all();
         assertThat(after, equalTo(before));
+
+        verifyGroupListInUI();
     }
 
 }
