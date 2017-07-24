@@ -37,6 +37,16 @@ public class DbHelper {
         return new Groups(result);
 
     }
+    public GroupData groupById(int id) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        GroupData result = (GroupData) session.createQuery("from GroupData where id = :id").setParameter("id",id).getSingleResult();
+
+        session.getTransaction().commit();
+        session.close();
+        return result;
+
+    }
 
     public Contacts contacts() {
         Session session = sessionFactory.openSession();
@@ -49,8 +59,39 @@ public class DbHelper {
 
 
 
-
-
-
     }
+
+    public Contacts contactNotInGroup() {
+        Contacts result = new Contacts();
+        Groups groupsFull = groups();
+        Contacts contactsFull = contacts();
+        for (ContactData contact : contactsFull) {
+            if (contact.getGroups().size() < groupsFull.size()) {
+                result.add(contact);
+            }
+        }
+        return new Contacts(result);
+    }
+
+    public Contacts contactInGroup() {
+        Contacts result = new Contacts();
+        Groups groupsFull = groups();
+        Contacts contactsFull = contacts();
+        for (ContactData contact : contactsFull) {
+            if (contact.getGroups().size() < groupsFull.size()) {
+                result.add(contact);
+            }
+        }
+        return new Contacts(result);
+    }
+
+    public GroupData getNewGroup() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        GroupData result = (GroupData) session.createQuery("from GroupData g where g.id = (select max(id) from GroupData)").getSingleResult();
+        session.getTransaction().commit();
+        session.close();
+        return result;
+    }
+
 }

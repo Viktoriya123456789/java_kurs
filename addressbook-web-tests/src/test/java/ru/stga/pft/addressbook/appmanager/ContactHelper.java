@@ -177,6 +177,21 @@ public class ContactHelper extends HelperBase{
     private void initContactModificationById(int id) {
         wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
     }
+
+    public void selectContact(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    }
+
+    public void addContactToGroup(int id) {
+        wd.findElement(By.xpath("//select[@name='group']//option[@value='" + "" + "']")).click();
+        click(By.cssSelector("input[name='add']"));
+    }
+
+
+    public void selectGroupById(int id) {
+        wd.findElement(By.name("//select[@name='to_group'")).click();
+    }
+
 }
 
 
