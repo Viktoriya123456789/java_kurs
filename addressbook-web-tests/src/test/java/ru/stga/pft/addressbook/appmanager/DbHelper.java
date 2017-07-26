@@ -94,4 +94,13 @@ public class DbHelper {
         return result;
     }
 
+    public ContactData getNewContact() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        ContactData result = (ContactData) session.createQuery("from ContactData g where g.id = (select max(id) from ContactData)").getSingleResult();
+        session.getTransaction().commit();
+        session.close();
+        return result;
+
+    }
 }

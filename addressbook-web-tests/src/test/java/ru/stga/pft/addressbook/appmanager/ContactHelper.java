@@ -6,20 +6,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stga.pft.addressbook.model.ContactData;
 import ru.stga.pft.addressbook.model.Contacts;
+import ru.stga.pft.addressbook.model.GroupData;
+
 import java.util.List;
 
 
 /**
  * Created by admin on 27.06.2017.
  */
-public class ContactHelper extends HelperBase{
-
+public class ContactHelper extends HelperBase {
 
 
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
-
 
 
     protected void type(By locator, String text) {
@@ -38,13 +38,12 @@ public class ContactHelper extends HelperBase{
     }
 
 
-
-   public void initContactModification(int id) {
-       wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
-   }
+    public void initContactModification(int id) {
+        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+    }
 
     public void selectContactById(int id) {
-       wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
     public void updateContactModification() {
@@ -75,9 +74,8 @@ public class ContactHelper extends HelperBase{
     }
 
 
-
     public boolean isThereAContact() {
-        return isElementPresent (By.name("selected[]"));
+        return isElementPresent(By.name("selected[]"));
     }
 
     public int count() {
@@ -131,7 +129,7 @@ public class ContactHelper extends HelperBase{
         String home = wd.findElement(By.name("home")).getAttribute("value");
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
-       // String emailes = wd.findElement(By.name("emailes")).getAttribute("value");
+        // String emailes = wd.findElement(By.name("emailes")).getAttribute("value");
         String email1 = wd.findElement(By.name("email")).getAttribute("value");
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
@@ -140,7 +138,7 @@ public class ContactHelper extends HelperBase{
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
                 .withAddress(address)
                 .withEmail1(email1).withEmail2(email2).withEmail3(email3);
-                //.withAllEmailes(emailes);
+        //.withAllEmailes(emailes);
 
     }
 
@@ -163,11 +161,10 @@ public class ContactHelper extends HelperBase{
             //String email3 = cells.get(4).getText();
 
 
-
             contactCache.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)
                     .withAllPhones(allPhones)
                     .withAddress(address)
-               //   .withEmail1("email1").withEmail2("email2").withEmail3("email3"));
+                    //   .withEmail1("email1").withEmail2("email2").withEmail3("email3"));
                     .withAllEmailes(allEmailes));
 
         }
@@ -183,15 +180,26 @@ public class ContactHelper extends HelperBase{
     }
 
     public void addContactToGroup(int id) {
-        wd.findElement(By.xpath("//select[@name='group']//option[@value='" + "" + "']")).click();
         click(By.cssSelector("input[name='add']"));
     }
 
-
     public void selectGroupById(int id) {
-        wd.findElement(By.name("//select[@name='to_group'")).click();
+        wd.findElement(By.xpath("//select[@name='to_group']//option[@value='" + id + "']")).click();
+
     }
 
+    public void selectGroupByIdForDelete(int id) {
+        wd.findElement(By.xpath("//select[@name='group']//option[@value='" + id + "']")).click();
+    }
+
+    public void deleteContactToGroup(int id) {
+        click(By.cssSelector("input[value='Delete']"));
+    }
+
+    public void removeContactFromGroup(int id) {
+        //click(By.cssSelector("input[name='Remove']"));
+        //wd.findElement(By.xpath("//select[@name='remove']//[@value='Remove from " +  id + "]")).click();
+        //wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+        click(By.name("remove"));
+    }
 }
-
-
