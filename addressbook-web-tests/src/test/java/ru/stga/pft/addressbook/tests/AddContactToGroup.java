@@ -26,7 +26,18 @@ public class AddContactToGroup extends TestBase {
         app.goTo().contactPage();
         Groups groups = app.db().groups();
         if (app.db().contacts().size() == 0) {
-            app.contact().create(new ContactData().withLastname("test1").withFirstname("test1").withAddress("test1"));
+            app.contact().create(new ContactData()
+                    .withFirstname("test")
+                    .withLastname("lastname")
+                    .withAddress("address")
+                    .withHomePhone("home")
+                    .withMobilePhone("mobile")
+                    .withWorkPhone("work")
+                    .withEmail1("email")
+                    .withEmail2("email2")
+                    .withEmail3("email3"));
+
+
         }
     }
 

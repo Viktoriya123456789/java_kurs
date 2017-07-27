@@ -1,10 +1,10 @@
 package ru.stga.pft.addressbook.appmanager;
 
-import org.hibernate.sql.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stga.pft.addressbook.model.ContactData;
 import ru.stga.pft.addressbook.model.Contacts;
@@ -34,9 +34,9 @@ public class ContactHelper extends HelperBase {
     }
 
     private void addContactToGroup(GroupData group) {
-       wd.findElement(By.name("to_group"));
-        //click(By.xpath("//div[@id='content']/form[2]/div[4]/input"));
-    }
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(group.getId()));
+        click(By.xpath("//div[@id='content']/form[2]/div[4]/input"));
+        }
 
     public GroupData getGroupToAddition(Groups groups, ContactData contact) {
         Groups beforeAdditionGroups = contact.getGroups();
@@ -62,7 +62,7 @@ public class ContactHelper extends HelperBase {
 
 
     private void SelectedGroupById(String id) {
-        wd.findElement(By.name("group")).click();
+        new Select(wd.findElement(By.name("group"))).selectByValue(id);
     }
 
 
@@ -84,6 +84,7 @@ public class ContactHelper extends HelperBase {
 
         if (creation) {
             if (contactData.getGroups().size() > 0) {
+                //Assert.assertTrue(contactData.getGroups().size() == 1);
                 Assert.assertTrue(contactData.getGroups().size() == 1);
                 new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
             }
