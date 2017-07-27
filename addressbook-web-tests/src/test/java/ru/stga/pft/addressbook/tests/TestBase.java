@@ -29,7 +29,7 @@ public class TestBase {
     org.slf4j.Logger logger = LoggerFactory.getLogger(GroupCreationTests.class);
 
 
-    protected static final ApplicationManager app
+    public static final ApplicationManager app
             = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
 

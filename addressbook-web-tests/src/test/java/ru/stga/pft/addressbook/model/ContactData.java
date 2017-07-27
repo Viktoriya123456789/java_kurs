@@ -9,7 +9,6 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collector;
 
 
 @Entity
@@ -20,7 +19,7 @@ public class ContactData {
     @Id
     @Column(name = "id")
     @XStreamOmitField
-    private int id = Integer.MAX_VALUE;
+    private int id;
 
     @Expose
     @Column(name = "firstname")
@@ -78,6 +77,15 @@ public class ContactData {
             joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
     private Set<GroupData> groups = new HashSet<GroupData>();
 
+    public ContactData() {
+        id = Integer.MAX_VALUE;
+    }
+
+
+    public ContactData inGroup(GroupData group) {
+        groups.add ( group );
+        return this;
+    }
 
     public int getId() {
         return id;
@@ -227,10 +235,6 @@ public class ContactData {
     }
 
 
-    public ContactData inGroup(GroupData group) {
-        groups.add(group);
-        return this;
-    }
 
 
 }

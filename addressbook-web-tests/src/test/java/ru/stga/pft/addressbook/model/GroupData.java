@@ -40,7 +40,7 @@ public class GroupData {
 
     private String footer;
 
-    @ManyToMany(mappedBy = "groups", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private Set<ContactData> contacts = new HashSet<ContactData>();
 
 
