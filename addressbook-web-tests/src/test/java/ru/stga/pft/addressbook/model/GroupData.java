@@ -15,7 +15,6 @@ import java.util.Set;
 @Table(name = "group_list")
 
 public class GroupData {
-
     @XStreamOmitField
     @Id
     @Column(name = "group_id")
@@ -30,22 +29,17 @@ public class GroupData {
     @Type(type = "text")
     private String header;
 
-    public Contacts getContacts() {
-        return new Contacts(contacts);
-    }
-
     @Expose
     @Column(name = "group_footer")
-    @Type(type = "text")
 
+    @Type(type = "text")
     private String footer;
 
     @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private Set<ContactData> contacts = new HashSet<ContactData>();
 
-
-    public int getId() {
-        return id;
+    public Set<ContactData> getContacts() {
+        return contacts;
     }
 
     public GroupData withId(int id) {
@@ -68,6 +62,10 @@ public class GroupData {
         return this;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -79,6 +77,7 @@ public class GroupData {
     public String getFooter() {
         return footer;
     }
+
 
     @Override
     public String toString() {

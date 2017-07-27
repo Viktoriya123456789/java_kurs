@@ -6,7 +6,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stga.pft.addressbook.model.ContactData;
 import ru.stga.pft.addressbook.model.GroupData;
@@ -21,6 +20,7 @@ public class HbConnectionTest {
     private SessionFactory sessionFactory;
 
     @BeforeClass
+
     protected void setUp() throws Exception {
         // A SessionFactory is set up once for an application!
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -38,7 +38,7 @@ public class HbConnectionTest {
     }
 
     @Test(enabled = false)
-    public void testHbConnection(){
+    public void testHbConnection() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<GroupData> result = session.createQuery( "from GroupData" ).list();
@@ -47,12 +47,10 @@ public class HbConnectionTest {
         }
         session.getTransaction().commit();
         session.close();
-
     }
 
-
     @Test
-    public void testHbConnectionContacts(){
+    public void testHbConnectionContact() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<ContactData> result = session.createQuery( "from ContactData where deprecated = '0000-00-00'" ).list();
@@ -63,6 +61,5 @@ public class HbConnectionTest {
             System.out.println(contact);
             System.out.println(contact.getGroups());
         }
-
     }
 }

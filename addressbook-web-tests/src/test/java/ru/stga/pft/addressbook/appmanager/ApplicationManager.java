@@ -1,8 +1,5 @@
 package ru.stga.pft.addressbook.appmanager;
 
-import org.eclipse.jetty.websocket.api.Session;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,7 +8,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
@@ -27,29 +23,27 @@ public class ApplicationManager {
 
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
-    private ContactHelper contactHelper;
     private GroupHelper groupHelper;
+    private ContactHelper contactHelper;
     private String browser;
     private DbHelper dbHelper;
 
-    public ApplicationManager (String browser)  {
+    public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
     }
-
 
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         dbHelper = new DbHelper();
-        if (Objects.equals(browser, BrowserType.FIREFOX)){
+        if (Objects.equals(browser, BrowserType.CHROME)) {
             wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-        } else if (Objects.equals(browser, BrowserType.CHROME)){
+        } else if (Objects.equals(browser, BrowserType.CHROME)) {
             wd = new ChromeDriver();
         } else if (Objects.equals(browser, BrowserType.IE)) {
             wd = new InternetExplorerDriver();
         }
-
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         wd.get(properties.getProperty("web.baseUrl"));
         groupHelper = new GroupHelper(wd);
@@ -57,6 +51,7 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+
     }
 
     public void stop() {
@@ -71,9 +66,16 @@ public class ApplicationManager {
         return contactHelper;
     }
 
+    public void setContactHelper(ContactHelper contactHelper) {
+        this.contactHelper = contactHelper;
+    }
+
     public NavigationHelper goTo() {
         return navigationHelper;
     }
 
-    public DbHelper db(){return dbHelper;}
+    public DbHelper db() {
+        return dbHelper;
+    }
 }
+

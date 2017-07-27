@@ -1,6 +1,5 @@
 package ru.stga.pft.addressbook.model;
 
-
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
@@ -10,16 +9,16 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@XStreamAlias("contact")
 
 @Entity
 @Table(name = "addressbook")
-@XStreamAlias("contact")
 public class ContactData {
+    @XStreamOmitField
 
     @Id
     @Column(name = "id")
-    @XStreamOmitField
-    private int id;
+    private int id = Integer.MAX_VALUE;
 
     @Expose
     @Column(name = "firstname")
@@ -30,62 +29,166 @@ public class ContactData {
     private String lastname;
 
     @Expose
-    @Column(name = "address")
-    @Type(type = "text")
-    private String address;
-
-    @Expose
     @Column(name = "home")
     @Type(type = "text")
     private String homePhone;
-
     @Expose
     @Column(name = "mobile")
     @Type(type = "text")
-    private String mobilePhone;
 
+    private String mobilePhone;
     @Expose
-    @Column(name = "work")
     @Type(type = "text")
+    @Column(name = "work")
     private String workPhone;
 
-    @Expose
     @Transient
     private String allPhones;
 
+//  @Expose
+    //@Column(name = "photo")
+    //@Type(type = "text")
+    //private String photo;
+
+    @Transient
     @Expose
-    @Column(name = "email")
-    @Type(type = "text")
     private String email1;
+    @Transient
 
     @Expose
-    @Column(name = "email2")
-    @Type(type = "text")
     private String email2;
+    @Transient
 
     @Expose
-    @Column(name = "email3")
-    @Type(type = "text")
     private String email3;
+    @Transient
+    private String allEmails;
 
     @Expose
     @Transient
-    private String allEmailes;
+    private String address;
+
+    //@ManyToMany(fetch = FetchType.EAGER)
+    public ContactData inGroup(GroupData group) {
+        groups.add ( group );
+        return this;
+    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "address_in_groups",
             joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
     private Set<GroupData> groups = new HashSet<GroupData>();
+//  public File getPhoto() {
+    //   return new File(photo);
+    //}
 
-    public ContactData() {
-        id = Integer.MAX_VALUE;
+//  public ContactData withPhoto(File photo) {
+    //   this.photo = photo.getPath();
+//    return this;
+    // }
+    // }
+
+    public String getAddress() {
+        return address;
     }
 
-
-    public ContactData inGroup(GroupData group) {
-        groups.add ( group );
+    public ContactData withAddress(String address) {
+        this.address = address;
         return this;
     }
+
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
+
+
+    public String getEmail1() {
+        return email1;
+    }
+
+    public ContactData withEmail1(String email1) {
+        this.email1 = email1;
+        return this;
+
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
+
+    public ContactData withId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public ContactData withFirstname(String firstname) {
+        this.firstname = firstname;
+        return this;
+
+    }
+
+    public ContactData withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
+
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
+    }
+
+    public ContactData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+        return this;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public ContactData withMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+        return this;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public ContactData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+        return this;
+    }
+
 
     public int getId() {
         return id;
@@ -99,108 +202,9 @@ public class ContactData {
         return lastname;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public String getWorkPhone() {
-        return workPhone;
-    }
-
-    public String getHomePhone() {
-        return homePhone;
-    }
-
-    public String getMobilePhone() {
-        return mobilePhone;
-    }
-
-    public String getAllPhones() {
-        return allPhones;
-    }
-
-    public String getEmail1() {
-        return email1;
-    }
-
-    public String getEmail2() {
-        return email2;
-    }
-
-    public String getEmail3() {
-        return email3;
-    }
-
-    public String getAllEmailes() {
-        return allEmailes;
-    }
-
     public Groups getGroups() {
         return new Groups(groups);
     }
-
-    public ContactData withId(int id) {
-        this.id = id;
-        return this;
-    }
-
-    public ContactData withFirstName(String firstname) {
-        this.firstname = firstname;
-        return this;
-    }
-
-    public ContactData withLastName(String lastname) {
-        this.lastname = lastname;
-        return this;
-    }
-
-    public ContactData withAddress(String address) {
-        this.address = address;
-        return this;
-    }
-
-    public ContactData withWorkPhone(String workPhone) {
-        this.workPhone = workPhone;
-        return this;
-    }
-
-    public ContactData withHomePhone(String homePhone) {
-        this.homePhone = homePhone;
-        return this;
-    }
-
-    public ContactData withMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
-        return this;
-    }
-
-    public ContactData withAllPhones(String allPhones) {
-        this.allPhones = allPhones;
-        return this;
-    }
-
-    public ContactData withEmail1(String email1) {
-        this.email1 = email1;
-        return this;
-    }
-
-
-    public ContactData withEmail2(String email2) {
-        this.email2 = email2;
-        return this;
-    }
-
-    public ContactData withEmail3(String email3) {
-        this.email3 = email3;
-        return this;
-    }
-
-
-    public ContactData withAllEmailes(String allEmailes) {
-        this.allEmailes = allEmailes;
-        return this;
-    }
-
 
     @Override
     public String toString() {
@@ -208,7 +212,6 @@ public class ContactData {
                 "id=" + id +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", address='" + address + '\'' +
                 '}';
     }
 
@@ -221,8 +224,7 @@ public class ContactData {
 
         if (id != that.id) return false;
         if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-        if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-        return address != null ? address.equals(that.address) : that.address == null;
+        return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
     }
 
     @Override
@@ -230,11 +232,6 @@ public class ContactData {
         int result = id;
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
         return result;
     }
-
-
-
-
 }

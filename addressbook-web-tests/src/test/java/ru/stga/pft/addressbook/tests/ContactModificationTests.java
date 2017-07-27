@@ -1,20 +1,13 @@
 package ru.stga.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stga.pft.addressbook.model.ContactData;
 import ru.stga.pft.addressbook.model.Contacts;
-import ru.stga.pft.addressbook.model.GroupData;
-import ru.stga.pft.addressbook.model.Groups;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
+import static org.hamcrest.core.IsEqual.equalToObject;
 
 /**
  * Created by admin on 27.06.2017.
@@ -22,30 +15,27 @@ import static org.testng.Assert.assertEquals;
 public class ContactModificationTests extends TestBase {
 
     @BeforeMethod
-    public void ensurePreconditions(){
-        if (app.db().contacts().size() == 0){
-            app.goTo().goToPage();
-            app.contact().create(new ContactData().withFirstName("test").withLastName("test1").withAddress("test2")
-                    .withWorkPhone("123").withHomePhone("456").withMobilePhone("789")
-                    .withEmail1("test@test").withEmail2("test1@test").withEmail3("test3@test"));
-        }
+    public void ensurePreconditions() {
+        if (app.db().contacts().size() == 0) {
+            app.goTo().contactPage();
+            app.contact().create(new ContactData().withFirstname( "test" ).withLastname("test1")
+                    .withMobilePhone("test2").withHomePhone("test3").withWorkPhone("test4")
+                    .withEmail1("test5").withEmail2("test6").withEmail3("test7") );
+           }
     }
 
     @Test
-    public void testContactModification() {
+    public void testGroupModification() {
+
         Contacts before = app.db().contacts();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData()
-                    .withId(modifiedContact.getId()).withFirstName("test").withLastName("test1").withAddress("test2")
-                .withWorkPhone("123").withHomePhone("456").withMobilePhone("789")
-                .withEmail1("test@test").withEmail2("test1@test").withEmail3("test3@test");
-
-        app.goTo().goToPage();
+                .withId(modifiedContact.getId()).withFirstname("test1").withLastname("test2");
+        app.goTo().contactPage();
         app.contact().modify(contact);
         assertThat(app.group().count(), equalTo(before.size()));
         Contacts after = app.db().contacts();
-        assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
-
+        assertThat(after, equalToObject(before.without(modifiedContact).withAdded(contact)));
         verifyContactListInUI();
     }
 }

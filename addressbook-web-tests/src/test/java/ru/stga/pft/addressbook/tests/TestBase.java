@@ -1,14 +1,14 @@
 package ru.stga.pft.addressbook.tests;
 
 
-
+import org.openqa.selenium.remote.BrowserType;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.stga.pft.addressbook.appmanager.ApplicationManager;
-import org.openqa.selenium.remote.BrowserType;
 import ru.stga.pft.addressbook.model.ContactData;
 import ru.stga.pft.addressbook.model.Contacts;
 import ru.stga.pft.addressbook.model.GroupData;
@@ -26,28 +26,24 @@ import static org.hamcrest.core.IsEqual.equalTo;
  */
 public class TestBase {
 
-    org.slf4j.Logger logger = LoggerFactory.getLogger(GroupCreationTests.class);
-
+    Logger logger = LoggerFactory.getLogger(TestBase.class);
 
     public static final ApplicationManager app
             = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
-
 
     @BeforeSuite
     public void setUp() throws Exception {
         app.init();
     }
 
-
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
         app.stop();
     }
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod
     public void logTestStart(Method m, Object[] p) {
-        logger.info("Start test " + m.getName() + "with parameters " + Arrays.asList(p));
-
+        logger.info("Start test " + m.getName() + "with parameters" + Arrays.asList(p));
     }
 
     @AfterMethod(alwaysRun = true)
@@ -59,20 +55,20 @@ public class TestBase {
         if (Boolean.getBoolean("verifyUI")) {
             Groups dbGroups = app.db().groups();
             Groups uiGroups = app.group().all();
-            assertThat(uiGroups, equalTo(dbGroups.stream().map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
+            assertThat(uiGroups, equalTo(dbGroups.stream()
+                    .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
                     .collect(Collectors.toSet())));
         }
     }
-
 
     public void verifyContactListInUI() {
         if (Boolean.getBoolean("verifyUI")) {
             Contacts dbContacts = app.db().contacts();
             Contacts uiContacts = app.contact().all();
-            assertThat(uiContacts, equalTo(dbContacts.stream().map((g) -> new ContactData().withId(g.getId())
-                    .withFirstName(g.getFirstname()).withLastName(g.getLastname()).withAddress(g.getAddress())
-                    .withWorkPhone(g.getWorkPhone()).withHomePhone(g.getHomePhone()).withMobilePhone(g.getMobilePhone())
-                    .withEmail1(g.getEmail1()).withEmail2(g.getEmail2()).withEmail3(g.getEmail3()))
+            assertThat(uiContacts, equalTo(dbContacts.stream().map((c) -> new ContactData().withId(c.getId())
+                    .withFirstname(c.getFirstname()).withLastname(c.getLastname()).withAddress(c.getAddress())
+                    .withWorkPhone(c.getWorkPhone()).withHomePhone(c.getHomePhone()).withMobilePhone(c.getMobilePhone())
+                    .withEmail1(c.getEmail1()).withEmail2(c.getEmail2()).withEmail3(c.getEmail3()))
                     .collect(Collectors.toSet())));
         }
     }
