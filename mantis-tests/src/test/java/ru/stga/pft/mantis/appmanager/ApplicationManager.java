@@ -1,11 +1,13 @@
 package ru.stga.pft.mantis.appmanager;
 
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -66,10 +68,9 @@ public class ApplicationManager {
     }
 
     public WebDriver getDriver() {
-        if (wd == null) ;
-        {
+        if (wd == null) {
             if (Objects.equals(browser, BrowserType.CHROME)) {
-                wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+                wd = new FirefoxDriver((Capabilities) new FirefoxOptions().setLegacy(true));
             } else if (Objects.equals(browser, BrowserType.CHROME)) {
                 wd = new ChromeDriver();
             } else if (Objects.equals(browser, BrowserType.IE)) {
@@ -79,6 +80,7 @@ public class ApplicationManager {
             wd.get(properties.getProperty("web.baseUrl"));
         }
         return wd;
+
     }
 
     public MailHelper mail(){
@@ -95,4 +97,3 @@ public class ApplicationManager {
         return jamesHelper;
     }
 }
-

@@ -1,12 +1,12 @@
 package ru.stga.pft.mantis.appmanager;
 
 
-        import org.openqa.selenium.By;
-        import org.openqa.selenium.NoAlertPresentException;
-        import org.openqa.selenium.NoSuchElementException;
-        import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 
-        import java.io.File;
+import java.io.File;
 
 public class HelperBase {
 

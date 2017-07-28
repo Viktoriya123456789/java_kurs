@@ -1,0 +1,5 @@
+<root>
+    <item name='org.openqa.selenium.firefox.FirefoxOptions'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>
