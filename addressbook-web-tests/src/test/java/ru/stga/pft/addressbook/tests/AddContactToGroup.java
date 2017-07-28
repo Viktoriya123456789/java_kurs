@@ -28,14 +28,14 @@ public class AddContactToGroup extends TestBase {
         if (app.db().contacts().size() == 0) {
             app.contact().create(new ContactData()
                     .withFirstname("test")
-                    .withLastname("lastname")
-                    .withAddress("address")
-                    .withHomePhone("home")
-                    .withMobilePhone("mobile")
-                    .withWorkPhone("work")
-                    .withEmail1("email")
-                    .withEmail2("email2")
-                    .withEmail3("email3"));
+                    .withLastname("lastname"));
+//                    .withAddress("address")
+//                    .withHomePhone("home")
+//                    .withMobilePhone("mobile")
+//                    .withWorkPhone("work")
+//                    .withEmail1("email")
+//                    .withEmail2("email2")
+//                    .withEmail3("email3"));
 
 
         }

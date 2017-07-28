@@ -31,27 +31,5 @@
     "email1": "email 2",
     "email2": "email2 2",
     "email3": "email3 2"
-  },
-  {
-    "firstname": "firstname 3",
-    "lastname": "lastname 3",
-    "address": "address 3",
-    "homePhone": "home 3",
-    "mobilePhone": "mobile 3",
-    "workPhone": "work 3",
-    "email1": "email 3",
-    "email2": "email2 3",
-    "email3": "email3 3"
-  },
-  {
-    "firstname": "firstname 4",
-    "lastname": "lastname 4",
-    "address": "address 4",
-    "homePhone": "home 4",
-    "mobilePhone": "mobile 4",
-    "workPhone": "work 4",
-    "email1": "email 4",
-    "email2": "email2 4",
-    "email3": "email3 4"
   }
 ]

@@ -25,9 +25,7 @@ public class Groups extends ForwardingSet<GroupData> {
         this.delegate = new HashSet<GroupData>(groups);
     }
 
-    public Groups(Set<GroupData> groups) {
 
-    }
 
     @Override
     protected Set<GroupData> delegate() {

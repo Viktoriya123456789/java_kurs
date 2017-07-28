@@ -1,6 +1,5 @@
 package ru.stga.pft.addressbook.model;
 
-
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
@@ -9,6 +8,10 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
+/**
+ * Created by admin on 23.06.2017.
+ */
 
 @XStreamAlias("group")
 @Entity
@@ -19,6 +22,7 @@ public class GroupData {
     @Id
     @Column(name = "group_id")
     private int id = Integer.MAX_VALUE;
+
 
     @Expose
     @Column(name = "group_name")
@@ -86,7 +90,6 @@ public class GroupData {
                 ", name='" + name + '\'' +
                 '}';
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

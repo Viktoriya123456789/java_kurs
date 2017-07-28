@@ -14,8 +14,8 @@ import java.util.Set;
 @Entity
 @Table(name = "addressbook")
 public class ContactData {
-    @XStreamOmitField
 
+    @XStreamOmitField
     @Id
     @Column(name = "id")
     private int id = Integer.MAX_VALUE;
@@ -32,11 +32,12 @@ public class ContactData {
     @Column(name = "home")
     @Type(type = "text")
     private String homePhone;
+
     @Expose
     @Column(name = "mobile")
     @Type(type = "text")
-
     private String mobilePhone;
+
     @Expose
     @Type(type = "text")
     @Column(name = "work")
@@ -50,22 +51,30 @@ public class ContactData {
     //@Type(type = "text")
     //private String photo;
 
-    @Transient
-    @Expose
-    private String email1;
-    @Transient
 
     @Expose
+    @Column(name = "email")
+    @Type(type = "text")
+    private String email1;
+
+
+    @Expose
+    @Column(name = "email2")
+    @Type(type = "text")
     private String email2;
     @Transient
 
     @Expose
+    @Column(name = "email3")
+    @Type(type = "text")
     private String email3;
+
     @Transient
     private String allEmails;
 
     @Expose
-    @Transient
+    @Column(name = "address")
+    @Type(type = "text")
     private String address;
 
     //@ManyToMany(fetch = FetchType.EAGER)
