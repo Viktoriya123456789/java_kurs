@@ -9,7 +9,8 @@ import org.openqa.selenium.By;
 public class RegistrationHelper extends HelperBase {
 
     public RegistrationHelper(ApplicationManager app) {
-        super (app);
+        super(app);
+
     }
 
     public void start(String username, String email) {
