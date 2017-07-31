@@ -1,6 +1,5 @@
 package ru.stga.pft.mantis.appmanager;
 
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -27,7 +26,7 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
-    //private JamesHelper jamesHelper;
+    private JamesHelper jamesHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -69,8 +68,8 @@ public class ApplicationManager {
 
     public WebDriver getDriver() {
         if (wd == null) {
-            if (Objects.equals(browser, BrowserType.CHROME)) {
-                wd = new FirefoxDriver((Capabilities) new FirefoxOptions().setLegacy(true));
+            if (Objects.equals(browser, BrowserType.FIREFOX)) {
+                wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
             } else if (Objects.equals(browser, BrowserType.CHROME)) {
                 wd = new ChromeDriver();
             } else if (Objects.equals(browser, BrowserType.IE)) {
@@ -90,10 +89,10 @@ public class ApplicationManager {
         return mailHelper;
     }
 
-//    public JamesHelper james(){
-//        if (jamesHelper == null){
-//            jamesHelper = new JamesHelper(this);
-//        }
-//        return jamesHelper;
-//    }
+    public JamesHelper james(){
+        if (jamesHelper == null){
+            jamesHelper = new JamesHelper(this);
+        }
+        return jamesHelper;
+    }
 }
