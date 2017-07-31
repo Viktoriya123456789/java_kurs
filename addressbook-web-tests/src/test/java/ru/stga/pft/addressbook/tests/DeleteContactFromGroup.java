@@ -64,6 +64,6 @@ public class DeleteContactFromGroup extends TestBase {
         ContactData after = app.db().contacts().stream().filter((c) -> (c.getId() == testContact.getId())).iterator().next();
         System.out.println("before: " + before);
         System.out.println("after: " + after);
-        org.junit.Assert.assertThat(before, CoreMatchers.equalTo(after.inGroup(testGroup)));
+        org.junit.Assert.assertThat(before, CoreMatchers.equalTo(after.without(testGroup)));
     }
 }

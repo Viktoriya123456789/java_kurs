@@ -79,7 +79,7 @@ public class ContactData {
 
     //@ManyToMany(fetch = FetchType.EAGER)
     public ContactData inGroup(GroupData group) {
-        groups.add ( group );
+        groups.add(group);
         return this;
     }
 
@@ -242,5 +242,12 @@ public class ContactData {
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
+    }
+
+
+
+    public ContactData without(GroupData testGroup) {
+        groups.add(testGroup);
+        return this;
     }
 }
