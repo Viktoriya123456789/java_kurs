@@ -1,9 +1,5 @@
 package ru.stga.pft.mantis.appmanager;
 
-/**
- * Created by admin on 28.07.2017.
- */
-
 import org.subethamail.wiser.Wiser;
 import org.subethamail.wiser.WiserMessage;
 import ru.stga.pft.mantis.model.MailMessage;
@@ -12,6 +8,10 @@ import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+
+/**
+ * Created by admin on 28.07.2017.
+ */
 
 public class MailHelper {
     private ApplicationManager app;
