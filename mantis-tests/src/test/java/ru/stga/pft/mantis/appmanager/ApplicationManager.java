@@ -14,14 +14,11 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by admin on 27.06.2017.
- */
+
 public class ApplicationManager {
+
     private final Properties properties;
-
     private WebDriver wd;
-
     private String browser;
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
@@ -69,6 +66,13 @@ public class ApplicationManager {
         return ftp;
     }
 
+    public DbHelper db() {
+        if (db == null) {
+            db = new DbHelper(this);
+        }
+        return db;
+    }
+
     public WebDriver getDriver() {
         if (wd == null) {
             if (Objects.equals(browser, BrowserType.FIREFOX)) {
@@ -82,7 +86,6 @@ public class ApplicationManager {
             wd.get(properties.getProperty("web.baseUrl"));
         }
         return wd;
-
     }
 
     public MailHelper mail() {
@@ -113,10 +116,5 @@ public class ApplicationManager {
         return navigationHelper;
     }
 
-    public DbHelper db() {
-        if (db == null) {
-            db = new DbHelper(this);
-        }
-        return db;
-    }
+
 }

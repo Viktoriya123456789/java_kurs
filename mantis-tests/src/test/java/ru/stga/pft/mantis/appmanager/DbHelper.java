@@ -12,10 +12,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by admin on 31.07.2017.
- */
-
 public class DbHelper {
 
     private final SessionFactory sessionFactory;

@@ -6,9 +6,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by admin on 31.07.2017.
- */
 
 public class Users extends ForwardingSet<UserData> {
 
@@ -33,4 +30,3 @@ public class Users extends ForwardingSet<UserData> {
     }
 
 }
-

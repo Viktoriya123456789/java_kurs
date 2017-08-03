@@ -15,9 +15,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by admin on 28.07.2017.
- */
 public class HttpSession {
     private CloseableHttpClient httpclient;
     private ApplicationManager app;

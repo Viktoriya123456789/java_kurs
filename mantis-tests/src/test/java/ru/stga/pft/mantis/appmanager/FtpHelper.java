@@ -1,9 +1,7 @@
 package ru.stga.pft.mantis.appmanager;
 
-/**
- * Created by admin on 28.07.2017.
- */
 import org.apache.commons.net.ftp.FTPClient;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

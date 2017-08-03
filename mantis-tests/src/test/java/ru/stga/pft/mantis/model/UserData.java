@@ -3,14 +3,10 @@ package ru.stga.pft.mantis.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 
-/**
- * Created by admin on 31.07.2017.
- */
 @Entity
-@Table(name = "mantis_user_table") //название таблицы в базе
+@javax.persistence.Table(name = "mantis_user_table") //название таблицы в базе
 public class UserData {
     @Id
     @Column(name = "id")
