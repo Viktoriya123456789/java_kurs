@@ -1,23 +1,22 @@
 package ru.stga.pft.mantis.tests;
 
-import org.hibernate.service.spi.ServiceException;
 import org.testng.annotations.Test;
 import ru.stga.pft.mantis.model.Issue;
 import ru.stga.pft.mantis.model.Project;
 
+import javax.xml.rpc.ServiceException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.Set;
 
-import static org.testng.AssertJUnit.assertEquals;
-
+import static org.testng.Assert.assertEquals;
 /**
  * Created by admin on 03.08.2017.
  */
 public class SoapTests extends TestBase {
 
     @Test
-    public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException, javax.xml.rpc.ServiceException {
+    public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException  {
 
         Set<Project> projects = app.soap().getProjects();
         System.out.println(projects.size());
@@ -27,7 +26,8 @@ public class SoapTests extends TestBase {
     }
 
     @Test
-    public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException, javax.xml.rpc.ServiceException {
+    public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException {
+        //skipIfNotFixed(0000001);
         Set<Project> projects = app.soap().getProjects();
         Issue issue = new Issue().withSummary("Test issue")
                 .withDescription("Test issue description").withProject(projects.iterator().next());
