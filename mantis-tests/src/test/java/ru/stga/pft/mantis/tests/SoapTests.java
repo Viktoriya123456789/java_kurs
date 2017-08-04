@@ -17,7 +17,7 @@ import static org.testng.AssertJUnit.assertEquals;
 public class SoapTests extends TestBase {
 
     @Test
-    public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
+    public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException, javax.xml.rpc.ServiceException {
 
         Set<Project> projects = app.soap().getProjects();
         System.out.println(projects.size());
@@ -27,7 +27,7 @@ public class SoapTests extends TestBase {
     }
 
     @Test
-    public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException {
+    public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException, javax.xml.rpc.ServiceException {
         Set<Project> projects = app.soap().getProjects();
         Issue issue = new Issue().withSummary("Test issue")
                 .withDescription("Test issue description").withProject(projects.iterator().next());

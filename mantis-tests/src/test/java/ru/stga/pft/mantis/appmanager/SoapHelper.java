@@ -1,6 +1,7 @@
 package ru.stga.pft.mantis.appmanager;
 
 
+import biz.futureware.mantis.rpc.soap.client.*;
 import org.hibernate.service.spi.ServiceException;
 import ru.stga.pft.mantis.model.Issue;
 import ru.stga.pft.mantis.model.Project;
@@ -24,7 +25,7 @@ public class SoapHelper {
         this.app = app;
     }
 
-    public Set<Project> getProjects() throws MalformedURLException, ServiceException, RemoteException {
+    public Set<Project> getProjects() throws MalformedURLException, ServiceException, RemoteException, javax.xml.rpc.ServiceException {
         MantisConnectPortType mc = getMantisConnect();
         ProjectData[] projects = mc.mc_projects_get_user_accessible("administrator", "root");
         return Arrays.asList(projects).stream()
@@ -32,12 +33,12 @@ public class SoapHelper {
                 .collect(Collectors.toSet());
     }
     
-    private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
+    private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException, javax.xml.rpc.ServiceException {
         return new MantisConnectLocator()
                 .getMantisConnectPort(new URL("http://localhost:8080/mantisbt-1.2.19/api/soap/mantisconnect.php"));
     }
 
-    public Issue addIssue(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
+    public Issue addIssue(Issue issue) throws MalformedURLException, ServiceException, RemoteException, javax.xml.rpc.ServiceException {
         MantisConnectPortType mc = getMantisConnect();
         String[] categories = mc.mc_project_get_categories("administrator", "root", BigInteger.valueOf(issue.getProject().getId()));
         IssueData issueData = new IssueData();
@@ -52,7 +53,4 @@ public class SoapHelper {
                 .withProject(new Project().withId(createdIssueData.getProject().getId().intValue())
                         .withName(createdIssueData.getProject().getName()));
     }
-
-
-
 }
