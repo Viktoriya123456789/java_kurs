@@ -1,4 +1,6 @@
 apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = "ru.stqa.pft.sandbox.MyFirstProgram"
 
 repositories {
     mavenCentral()
@@ -10,6 +12,7 @@ dependencies {
     compile 'org.apache.httpcomponents:httpclient:4.5.1'
     compile 'org.apache.httpcomponents:fluent-hc:4.5.1'
     compile 'com.jayway.restassured:rest-assured:2.9.0'
+    compile 'com.jayway.jsonpath:json-path:2.2.0'
 
 }
 

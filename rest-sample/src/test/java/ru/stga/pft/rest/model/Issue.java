@@ -1,4 +1,4 @@
-package ru.stga.pft.rest;
+package ru.stga.pft.rest.model;
 
 /**
  * Created by admin on 07.08.2017.
@@ -8,8 +8,6 @@ public class Issue {
     private int id;
     private String subject;
     private String description;
-    private String state_name;
-
 
     public int getId() {
         return id;
@@ -33,6 +31,11 @@ public class Issue {
         return description;
     }
 
+    public Issue withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,7 +46,6 @@ public class Issue {
         if (id != issue.id) return false;
         if (subject != null ? !subject.equals(issue.subject) : issue.subject != null) return false;
         return description != null ? description.equals(issue.description) : issue.description == null;
-
     }
 
     @Override
@@ -53,26 +55,4 @@ public class Issue {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
-
-    public Issue withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    public Issue whitId(int id) {
-        this.id = id;
-        return this;
-    }
-
-    public String getStatus() {
-        return state_name;
-    }
-
-    public Issue whitStatus(String state_name) {
-        this.state_name = state_name;
-        return this;
-    }
-
-
-
 }
